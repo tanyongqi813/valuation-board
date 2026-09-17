@@ -6,7 +6,8 @@ export function useBoardData() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    fetch('/data/boards.json')
+    // 使用 BASE_URL 相对路径，兼容 GitHub Pages 子目录部署
+    fetch(`${import.meta.env.BASE_URL}data/boards.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json()
